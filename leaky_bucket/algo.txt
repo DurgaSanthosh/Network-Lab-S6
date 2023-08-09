@@ -1,3 +1,6 @@
+Leaky Bucket Algorithm:
+
+
 1. Initialize variables:
    - incoming, outgoing, buck_size, n, store = 0
 
