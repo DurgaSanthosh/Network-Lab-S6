@@ -1,0 +1,55 @@
+Input:
+- count: Number of routers (nodes)
+- cost_matrix: Matrix representing the link costs between routers
+- src_router: Source router for the shortest path calculations
+
+Output:
+- Print the shortest path and cost from source router to all other routers
+
+Procedure LinkStateRouting(count, cost_matrix, src_router):
+    Initialize an array dist of size count to store the shortest distance from source to each router
+    Initialize an array last of size count to store the last hop router in the shortest path
+    Initialize an array flag of size count to track visited routers
+    
+    // Initialization phase
+    For v = 0 to count - 1:
+        flag[v] = false
+        last[v] = src_router
+        dist[v] = cost_matrix[src_router][v]
+    End For
+    flag[src_router] = true
+    
+    // Dijkstra's algorithm
+    For i = 0 to count - 1:
+        min = infinity
+        For w = 0 to count - 1:
+            If NOT flag[w] AND dist[w] < min:
+                v = w
+                min = dist[w]
+            End If
+        End For
+        flag[v] = true
+        
+        // Relaxation step
+        For w = 0 to count - 1:
+            If NOT flag[w] AND min + cost_matrix[v][w] < dist[w]:
+                dist[w] = min + cost_matrix[v][w]
+                last[w] = v
+            End If
+        End For
+    End For
+    
+    // Output the results
+    For i = 0 to count - 1:
+        Print "Shortest path from router", src_router, "to router", i
+        Print "Path:", i
+        w = i
+        While w != src_router:
+            Print "<--", last[w]
+            w = last[w]
+        End While
+        Print "Shortest path cost:", dist[i]
+    End For
+
+End Procedure
+
