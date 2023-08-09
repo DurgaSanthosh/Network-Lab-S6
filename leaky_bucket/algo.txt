@@ -7,13 +7,22 @@
 
 3. Loop for each packet i from 1 to n:
    a. Prompt the user to enter the size of the incoming packet (incoming)
-   b. If incoming > (buck_size - store), adjust incoming to fit the remaining bucket space
-   c. Add incoming to store (bucket content)
-   d. Print the current bucket buffer size (store) and total bucket size (buck_size)
-   e. If store >= outgoing, subtract outgoing from store
-      - Else, set store to 0
+   b. Print the size of the incoming packet (incoming)
+   c. If incoming <= (buck_size - store):
+      - Add incoming to store (bucket content)
+      - Print the current bucket buffer size (store) and total bucket size (buck_size)
+   d. Else:
+      - Calculate the number of packets to drop (incoming - (buck_size - store))
+      - Print the number of dropped packets
+      - Print the current bucket buffer size (store) and total bucket size (buck_size)
+      - Set store to buck_size (bucket is full)
+   e. Subtract outgoing from store
+      - If store < 0, set store to 0 (bucket can't be negative)
+      - Print the remaining packet count in the buffer and total bucket size (buck_size)
+   f. Decrement n
 
 4. End of loop
 
 5. End of program
+
 
