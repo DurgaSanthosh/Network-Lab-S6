@@ -1,0 +1,19 @@
+1. Initialize variables:
+   - incoming, outgoing, buck_size, n, store = 0
+
+2. Input values:
+   - Prompt the user to enter buck_size, outgoing, and n
+   - Read buck_size, outgoing, and n from the user
+
+3. Loop for each packet i from 1 to n:
+   a. Prompt the user to enter the size of the incoming packet (incoming)
+   b. If incoming > (buck_size - store), adjust incoming to fit the remaining bucket space
+   c. Add incoming to store (bucket content)
+   d. Print the current bucket buffer size (store) and total bucket size (buck_size)
+   e. If store >= outgoing, subtract outgoing from store
+      - Else, set store to 0
+
+4. End of loop
+
+5. End of program
+
